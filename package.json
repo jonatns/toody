@@ -1,0 +1,22 @@
+{
+  "name": "toody",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "dotenv": "^2.0.0",
+    "nodemon": "^1.9.1",
+    "rethinkdb": "^2.3.0"
+  }
+}
+
+
+

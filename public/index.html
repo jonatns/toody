@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" ng-app="toodyApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Toody</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body ng-controller="mainController">
+    <div class="container">
+        <div class="title" align="center">
+          <h1>Toody<span class="label label-info"></span></h1>
+        </div>
+        <div class="row">
+          <div class="12 columns">
+            <form>
+              <input style="width: 200px;" type="text" class="form-control input-lg text-center" placeholder="Title" ng-model="formData.title">
+                <select ng-model="formData.client" style="width: 200px;">
+                  <option value="" disabled="true" selected>Select a client</option>
+                  <option value="Santini Law Office">Santini Law Office</option>
+                  <option value="CPA Matos">CPA Matos</option>
+                  <option value="Castillo Tours">Castillo Tours</option>
+                </select>
+                <button class="button-primary" ng-click="createTask()">Add</button>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="seven columns">
+          <table class="u-full-width">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Client</th>
+                <th>
+                  &nbsp;
+                </th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="task in tasks">
+              <tr draggable="true" effect-allowed="copy" draggable-type="custom-object" draggable-data="task">
+                <td>
+                      <input type="checkbox" ng-click="deleteTask(task.id)">
+                      <span style="font-weight: bold;">{{ task.title}}</span>
+                 </td>
+                 <td>
+                   {{ task.client}}
+                 </td>
+                 <td>
+                   <i ng-show="task.assigned" style="color: #3498db;"class="fa fa-user fa-lg"></i>
+                   <i ng-show="!task.done && !task.inProgress" style="color: #f44336;"class="fa fa-times fa-lg"></i>
+                   <i ng-show="task.done" style="color: #2ecc71;"class="fa fa-check fa-lg"></i>
+                   <i ng-show="task.inProgress" style="color: #3498db;"class="fa fa-clock-o fa-lg"></i>
+                 </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="five columns">
+          <table class="u-full-width">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Last Name</th>
+                <th ># Tasks</th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="employee in employees" >
+              <tr drop="onDrop($data, $event, employee.id)" drop-effect="copy" drop-accept="'json/custom-object'" drag-over="onDragOver($event)" drag-over-class="drag-over-accept">
+                <td>
+                  {{ employee.firstname }}
+                 </td>
+                 <td>
+                  {{ employee.lastname }}
+                 </td>
+                 <td align="center">
+                   {{ employee.tasks.length }}
+                 </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="main.js"></script>
+    <script src="angular-draganddrop.js"></script>
+
+</body>
+</html>

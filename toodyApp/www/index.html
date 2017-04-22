@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+
+  </head>
+  <body ng-app="starter" ng-controller="mainController">
+
+    <ion-pane>
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">Ionic Blank Starter</h1>
+      </ion-header-bar>
+      <ion-content>
+        <ion-refresher
+          pulling-text="Pull to refresh..."
+          on-refresh="doRefresh()">
+          </ion-refresher>
+        <ion-list>
+          <ion-item ng-repeat="task in tasks | limitTo:10" item="task" can-swipe="true">
+            <span style="font-weight: bold;">{{task.title}} - {{task.client}}</span>
+            <span align="right">
+              <i ng-show="!task.done && !task.inProgress" style="color: #f44336; float: right; right: 0px;"class="ion-ios-close"></i>
+              <i ng-show="task.done" style="color: #2ecc71;float: right; right: 0px;"class="ion-ios-checkmark"></i>
+              <i ng-show="task.inProgress" style="color: #3498db;float: right; right: 0px;"class="ion-ios-clock"></i>
+            </span>
+            <ion-option-button style="color: #3498db;; font-size: 16px;">
+              In progress
+            </ion-option-button>
+            <ion-option-button style="color: #2ecc71;; font-size: 16px;" onclick="taskDone(task.id)">
+              Done
+            </ion-option-button>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+      <ion-tabs class="tabs-positive tabs-icon-top">
+
+  <ion-tab title="Tasks" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+    <!-- Tab 1 content -->
+  </ion-tab>
+  <ion-tab title="Account" icon-on="ion-ios-gear" icon-off="ion-ios-person">
+    <!-- Tab 3 content -->
+  </ion-tab>
+
+</ion-tabs>
+    </ion-pane>
+  </body>
+</html>
